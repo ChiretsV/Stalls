@@ -116,10 +116,21 @@ void Shop::on_delete_2_clicked()
 
 }
 
-
-
 void Shop::on_main_request_clicked()
 {
+    emit send_to_admin(item_name, quantity);
+}
 
+void Shop::on_listWidget_itemClicked(QListWidgetItem *item)
+{
+    item_name = item->text();
+    quantity = item->data(Qt::UserRole).toInt();
+}
+
+void Shop :: slot_for_replenishment_shop(QString item, int value)
+{
+    itemName = item;
+    quantity = value;
+    emit send_to_database(itemName, quantity);
 }
 

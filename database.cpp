@@ -35,7 +35,7 @@ void Database :: slotToDatabase(QString itemName, int quantity_database)
 {
     qDebug()<<itemName<<quantity_database;
     int newRow = model->rowCount();
-    if(! model->insertRow(newRow))
+    if(!model->insertRow(newRow))
     {
         qDebug("Error insert");
         return;
