@@ -117,3 +117,9 @@ void Shop::on_delete_2_clicked()
 }
 
 
+
+void Shop::on_main_request_clicked()
+{
+
+}
+
