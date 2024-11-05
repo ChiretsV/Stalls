@@ -19,8 +19,8 @@ public:
     explicit Admin(QWidget *parent = nullptr);
     ~Admin();
 
-//public slots:
-    //void slot_for_replenishment(QString item, int value);
+public slots:
+    void slot_for_replenishment(QString item, int value);
 
 signals:
     void send_to_admin_db(QString, int);

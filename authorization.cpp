@@ -8,7 +8,7 @@ Authorization::Authorization(QWidget *parent)
     ui->setupUi(this);
     QObject::connect(&shop, SIGNAL(send_to_database(QString, int)), &database, SLOT(slotToDatabase(QString, int)));
     //QObject::connect(&admin, SIGNAL(send_to_admin_db(QString, int)), &admin_db, SLOT(slot_for_admin_db(QString, int)));
-    //QObject::connect(&shop, SIGNAL(send_to_admin(QString, int)), &admin, SLOT(slot_for_replenishment(QString, int)));
+    QObject::connect(&shop, SIGNAL(send_to_admin(QString, int)), &admin, SLOT(slot_for_replenishment(QString, int)));
     //QObject::connect(&admin, SIGNAL(send_to_admin_db(QString, int)), &database, SLOT(slot_for_replenishment_database(QString, int)));
     //QObject::connect(&admin, SIGNAL(send_to_shop(QString, int)), &shop, SLOT(slot_for_replenishment_shop(QString, int)));
 }
@@ -27,6 +27,8 @@ void Authorization::on_entrance_clicked()
         hide();
         shop.show();
         database.show();
+        admin.show();
+        admin_db.show();
     }
     if(login=="admin" && password == "admin")
     {
