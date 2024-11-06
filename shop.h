@@ -23,8 +23,11 @@ public:
     explicit Shop(QWidget *parent = nullptr);
     ~Shop();
 
+public slots:
+    void slot_for_replenishment_shop(QString, int);
 signals:
     void send_to_database(QString itemName, int quantity_database);
+    void send_to_admin(QString item, int quantity);
 
 private slots:
     void on_confirmed_clicked();
@@ -37,6 +40,10 @@ private slots:
 
     void on_soup();
 
+    void on_main_request_clicked();
+
+    void on_listWidget_itemClicked(QListWidgetItem *item);
+
 private:
     Ui::Shop *ui;
     QMap<QString, int> items;
@@ -45,6 +52,8 @@ private:
     QListWidgetItem *list_item;
     QString item_name_database ;
     int quantity_database ;
+    QString item_name;
+    int quantity;
 
 };
 
