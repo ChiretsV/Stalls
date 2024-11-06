@@ -11,6 +11,7 @@ Admin_db::Admin_db(QWidget *parent)
     }
     admin_database = QSqlDatabase::addDatabase("QSQLITE", "admin_db_connection");
     admin_database.setDatabaseName("./admin_db.db");
+    ////////////////////
 
     if(admin_database.open()) {
         qDebug("open");
