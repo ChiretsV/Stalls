@@ -7,6 +7,7 @@
 #include <QSqlQuery>
 #include <QSqlTableModel>
 #include <QString>
+#include <QMessageBox>
 
 namespace Ui {
 class Database;
@@ -22,6 +23,7 @@ public:
 
 public slots:
     void slotToDatabase(QString itemName, int quantity_database);
+    void slot_for_replenishment_database(QString item, int value);
 
 private:
     Ui::Database *ui;

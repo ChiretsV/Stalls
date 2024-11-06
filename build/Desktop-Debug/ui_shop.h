@@ -40,6 +40,7 @@ public:
     QPushButton *confirm;
     QPushButton *confirmed;
     QListWidget *listWidget;
+    QPushButton *main_request;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -97,6 +98,11 @@ public:
 
         gridLayout->addLayout(verticalLayout_2, 0, 0, 1, 1);
 
+        main_request = new QPushButton(centralwidget);
+        main_request->setObjectName("main_request");
+
+        gridLayout->addWidget(main_request, 1, 0, 1, 1);
+
         Shop->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Shop);
         menubar->setObjectName("menubar");
@@ -117,6 +123,7 @@ public:
         delete_2->setText(QCoreApplication::translate("Shop", "\320\243\320\264\320\260\320\273\320\270\321\202\321\214 \321\215\320\273\320\265\320\274\320\265\320\275\321\202 \320\270\320\267 \320\272\320\276\321\200\320\267\320\270\320\275\321\213", nullptr));
         confirm->setText(QCoreApplication::translate("Shop", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214 \320\262 \320\272\320\276\321\200\320\267\320\270\320\275\321\203", nullptr));
         confirmed->setText(QCoreApplication::translate("Shop", "\320\237\320\276\320\264\321\202\320\262\320\265\321\200\320\264\320\270\321\202\321\214 \320\267\320\260\320\272\320\260\320\267", nullptr));
+        main_request->setText(QCoreApplication::translate("Shop", "\320\227\320\260\320\277\321\200\320\276\321\201\320\270\321\202\321\214 \321\202\320\276\320\262\320\260\321\200 \321\201 \320\276\321\201\320\275\320\276\320\262\320\275\320\276\320\263\320\276 \321\201\320\272\320\273\320\260\320\264\320\260", nullptr));
     } // retranslateUi
 
 };

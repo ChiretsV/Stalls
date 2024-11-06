@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = Stalls1.0.0
-DISTDIR = /home/kozlov/Stalls/build/Desktop-Debug/.tmp/Stalls1.0.0
+DISTDIR = /home/kozlov/StallsGit/Stalls/build/Desktop-Debug/.tmp/Stalls1.0.0
 LINK          = clang++
 LFLAGS        = -ccc-gcc-name g++ -Wl,-rpath-link,/usr/lib/x86_64-linux-gnu
 LIBS          = $(SUBLIBS) /usr/lib/x86_64-linux-gnu/libQt6Widgets.so /usr/lib/x86_64-linux-gnu/libQt6Gui.so /usr/lib/x86_64-linux-gnu/libGLX.so /usr/lib/x86_64-linux-gnu/libOpenGL.so /usr/lib/x86_64-linux-gnu/libQt6Sql.so /usr/lib/x86_64-linux-gnu/libQt6Core.so -lpthread -lGLX -lOpenGL   
@@ -52,13 +52,25 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../../database.cpp \
+SOURCES       = ../../admin.cpp \
+		../../admin_db.cpp \
+		../../authorization.cpp \
+		../../database.cpp \
 		../../main.cpp \
-		../../shop.cpp moc_database.cpp \
+		../../shop.cpp moc_admin.cpp \
+		moc_admin_db.cpp \
+		moc_authorization.cpp \
+		moc_database.cpp \
 		moc_shop.cpp
-OBJECTS       = database.o \
+OBJECTS       = admin.o \
+		admin_db.o \
+		authorization.o \
+		database.o \
 		main.o \
 		shop.o \
+		moc_admin.o \
+		moc_admin_db.o \
+		moc_authorization.o \
 		moc_database.o \
 		moc_shop.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
@@ -126,8 +138,14 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/lex.prf \
-		../../../../Stalls.pro ../../database.h \
-		../../shop.h ../../database.cpp \
+		../../../../Stalls.pro ../../admin.h \
+		../../admin_db.h \
+		../../authorization.h \
+		../../database.h \
+		../../shop.h ../../admin.cpp \
+		../../admin_db.cpp \
+		../../authorization.cpp \
+		../../database.cpp \
 		../../main.cpp \
 		../../shop.cpp
 QMAKE_TARGET  = Stalls
@@ -138,7 +156,7 @@ TARGET        = Stalls
 first: all
 ####### Build rules
 
-Stalls: ui_database.h ui_shop.h $(OBJECTS)  
+Stalls: ui_admin.h ui_admin_db.h ui_authorization.h ui_database.h ui_shop.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET)  $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../../Stalls.pro /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-clang/qmake.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
@@ -297,9 +315,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../database.h ../../shop.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../database.cpp ../../main.cpp ../../shop.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../database.ui ../../shop.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../../admin.h ../../admin_db.h ../../authorization.h ../../database.h ../../shop.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../admin.cpp ../../admin_db.cpp ../../authorization.cpp ../../database.cpp ../../main.cpp ../../shop.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../admin.ui ../../admin_db.ui ../../authorization.ui ../../database.ui ../../shop.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -331,27 +349,58 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/data/dummy.cpp
 	clang++ -pipe -g -std=gnu++1z -Wall -Wextra -fPIC -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_database.cpp moc_shop.cpp
+compiler_moc_header_make_all: moc_admin.cpp moc_admin_db.cpp moc_authorization.cpp moc_database.cpp moc_shop.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_database.cpp moc_shop.cpp
+	-$(DEL_FILE) moc_admin.cpp moc_admin_db.cpp moc_authorization.cpp moc_database.cpp moc_shop.cpp
+moc_admin.cpp: ../../admin.h \
+		moc_predefs.h \
+		/usr/lib/qt6/libexec/moc
+	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/kozlov/StallsGit/Stalls/build/Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-clang -I/home/kozlov/StallsGit/Stalls -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtSql -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/llvm-18/lib/clang/18/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../admin.h -o moc_admin.cpp
+
+moc_admin_db.cpp: ../../admin_db.h \
+		moc_predefs.h \
+		/usr/lib/qt6/libexec/moc
+	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/kozlov/StallsGit/Stalls/build/Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-clang -I/home/kozlov/StallsGit/Stalls -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtSql -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/llvm-18/lib/clang/18/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../admin_db.h -o moc_admin_db.cpp
+
+moc_authorization.cpp: ../../authorization.h \
+		../../shop.h \
+		../../database.h \
+		../../admin.h \
+		../../admin_db.h \
+		moc_predefs.h \
+		/usr/lib/qt6/libexec/moc
+	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/kozlov/StallsGit/Stalls/build/Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-clang -I/home/kozlov/StallsGit/Stalls -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtSql -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/llvm-18/lib/clang/18/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../authorization.h -o moc_authorization.cpp
+
 moc_database.cpp: ../../database.h \
 		moc_predefs.h \
 		/usr/lib/qt6/libexec/moc
-	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/kozlov/Stalls/build/Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-clang -I/home/kozlov/Stalls -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtSql -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/llvm-18/lib/clang/18/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../database.h -o moc_database.cpp
+	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/kozlov/StallsGit/Stalls/build/Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-clang -I/home/kozlov/StallsGit/Stalls -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtSql -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/llvm-18/lib/clang/18/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../database.h -o moc_database.cpp
 
 moc_shop.cpp: ../../shop.h \
 		../../database.h \
 		moc_predefs.h \
 		/usr/lib/qt6/libexec/moc
-	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/kozlov/Stalls/build/Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-clang -I/home/kozlov/Stalls -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtSql -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/llvm-18/lib/clang/18/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../shop.h -o moc_shop.cpp
+	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/kozlov/StallsGit/Stalls/build/Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-clang -I/home/kozlov/StallsGit/Stalls -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtSql -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/llvm-18/lib/clang/18/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../shop.h -o moc_shop.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_database.h ui_shop.h
+compiler_uic_make_all: ui_admin.h ui_admin_db.h ui_authorization.h ui_database.h ui_shop.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_database.h ui_shop.h
+	-$(DEL_FILE) ui_admin.h ui_admin_db.h ui_authorization.h ui_database.h ui_shop.h
+ui_admin.h: ../../admin.ui \
+		/usr/lib/qt6/libexec/uic
+	/usr/lib/qt6/libexec/uic ../../admin.ui -o ui_admin.h
+
+ui_admin_db.h: ../../admin_db.ui \
+		/usr/lib/qt6/libexec/uic
+	/usr/lib/qt6/libexec/uic ../../admin_db.ui -o ui_admin_db.h
+
+ui_authorization.h: ../../authorization.ui \
+		/usr/lib/qt6/libexec/uic
+	/usr/lib/qt6/libexec/uic ../../authorization.ui -o ui_authorization.h
+
 ui_database.h: ../../database.ui \
 		/usr/lib/qt6/libexec/uic
 	/usr/lib/qt6/libexec/uic ../../database.ui -o ui_database.h
@@ -370,18 +419,46 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
+admin.o: ../../admin.cpp ../../admin.h \
+		ui_admin.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o admin.o ../../admin.cpp
+
+admin_db.o: ../../admin_db.cpp ../../admin_db.h \
+		ui_admin_db.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o admin_db.o ../../admin_db.cpp
+
+authorization.o: ../../authorization.cpp ../../authorization.h \
+		../../shop.h \
+		../../database.h \
+		../../admin.h \
+		../../admin_db.h \
+		ui_authorization.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o authorization.o ../../authorization.cpp
+
 database.o: ../../database.cpp ../../database.h \
 		ui_database.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o database.o ../../database.cpp
 
-main.o: ../../main.cpp ../../shop.h \
-		../../database.h
+main.o: ../../main.cpp ../../authorization.h \
+		../../shop.h \
+		../../database.h \
+		../../admin.h \
+		../../admin_db.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
 
 shop.o: ../../shop.cpp ../../shop.h \
 		../../database.h \
 		ui_shop.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o shop.o ../../shop.cpp
+
+moc_admin.o: moc_admin.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_admin.o moc_admin.cpp
+
+moc_admin_db.o: moc_admin_db.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_admin_db.o moc_admin_db.cpp
+
+moc_authorization.o: moc_authorization.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_authorization.o moc_authorization.cpp
 
 moc_database.o: moc_database.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_database.o moc_database.cpp

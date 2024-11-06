@@ -116,4 +116,33 @@ void Shop::on_delete_2_clicked()
 
 }
 
+void Shop::on_main_request_clicked()
+{
+    for(int i=0; i<ui->listWidget->count(); ++i)
+    {
+        list_item = ui->listWidget->item(i);
+        item_database = list_item->text();
+        QStringList itemData = item_database.split(" ");
+        if(itemData.size()<2)
+        {
+            continue;
+        }
+        item_name_database = itemData[0];
+        quantity_database = itemData[1].toInt();
+        emit send_to_admin(item_name_database, quantity_database);
+    }
+}
+
+void Shop::on_listWidget_itemClicked(QListWidgetItem *item)
+{
+    item_name = item->text();
+    quantity = item->data(Qt::UserRole).toInt();
+}
+
+void Shop :: slot_for_replenishment_shop(QString item, int value)
+{
+    itemName = item;
+    quantity = value;
+    emit send_to_database(itemName, quantity);
+}
 
