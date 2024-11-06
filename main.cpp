@@ -1,14 +1,11 @@
-#include "shop.h"
-#include "database.h"
+#include "authorization.h"
+
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Shop w;
-    w.show();
-    Database db;
-    db.show();
-    QObject::connect(&w, SIGNAL(send_to_database(QString, int )), &db, SLOT(slotToDatabase(QString, int )));
+    Authorization authorization;
+    authorization.show();
     return a.exec();
 }

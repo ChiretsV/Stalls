@@ -26,12 +26,15 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_Database_t {
-    uint offsetsAndSizes[10];
+    uint offsetsAndSizes[16];
     char stringdata0[9];
     char stringdata1[15];
     char stringdata2[1];
     char stringdata3[9];
     char stringdata4[18];
+    char stringdata5[32];
+    char stringdata6[5];
+    char stringdata7[6];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_Database_t::offsetsAndSizes) + ofs), len 
@@ -41,13 +44,19 @@ Q_CONSTINIT static const qt_meta_stringdata_Database_t qt_meta_stringdata_Databa
         QT_MOC_LITERAL(9, 14),  // "slotToDatabase"
         QT_MOC_LITERAL(24, 0),  // ""
         QT_MOC_LITERAL(25, 8),  // "itemName"
-        QT_MOC_LITERAL(34, 17)   // "quantity_database"
+        QT_MOC_LITERAL(34, 17),  // "quantity_database"
+        QT_MOC_LITERAL(52, 31),  // "slot_for_replenishment_database"
+        QT_MOC_LITERAL(84, 4),  // "item"
+        QT_MOC_LITERAL(89, 5)   // "value"
     },
     "Database",
     "slotToDatabase",
     "",
     "itemName",
-    "quantity_database"
+    "quantity_database",
+    "slot_for_replenishment_database",
+    "item",
+    "value"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -58,7 +67,7 @@ Q_CONSTINIT static const uint qt_meta_data_Database[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       1,   14, // methods
+       2,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -66,10 +75,12 @@ Q_CONSTINIT static const uint qt_meta_data_Database[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    2,   20,    2, 0x0a,    1 /* Public */,
+       1,    2,   26,    2, 0x0a,    1 /* Public */,
+       5,    2,   31,    2, 0x0a,    4 /* Public */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::Int,    3,    4,
+    QMetaType::Void, QMetaType::QString, QMetaType::Int,    6,    7,
 
        0        // eod
 };
@@ -86,6 +97,10 @@ Q_CONSTINIT const QMetaObject Database::staticMetaObject = { {
         // method 'slotToDatabase'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'slot_for_replenishment_database'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>
     >,
     nullptr
@@ -98,6 +113,7 @@ void Database::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         (void)_t;
         switch (_id) {
         case 0: _t->slotToDatabase((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        case 1: _t->slot_for_replenishment_database((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         default: ;
         }
     }
@@ -122,13 +138,13 @@ int Database::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 2;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
+        if (_id < 2)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 1;
+        _id -= 2;
     }
     return _id;
 }
