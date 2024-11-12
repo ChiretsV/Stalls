@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Shop</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">font-size: 18px</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
@@ -22,20 +25,45 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
-           <widget class="QTableWidget" name="tableWidget"/>
+           <widget class="QTableWidget" name="tableWidget">
+            <property name="styleSheet">
+             <string notr="true">border: none;
+text-align: center;</string>
+            </property>
+           </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox"/>
+           <widget class="QSpinBox" name="spinBox">
+            <property name="styleSheet">
+             <string notr="true">padding: 5px;
+border-radius: 5px;
+-webkit-appearance: none;</string>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QPushButton" name="delete_2">
+            <property name="styleSheet">
+             <string notr="true">color: white;
+background-color: red;
+border: none;
+border-radius: 5px;
+padding: 5px;</string>
+            </property>
             <property name="text">
-             <string>Удалить элемент из корзины</string>
+             <string>Очистить корзину</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="confirm">
+            <property name="styleSheet">
+             <string notr="true">border: none;
+border-radius: 5px;
+padding: 5px;
+background: yellow;
+color: black;</string>
+            </property>
             <property name="text">
              <string>Добавить в корзину</string>
             </property>
@@ -43,6 +71,13 @@
           </item>
           <item>
            <widget class="QPushButton" name="confirmed">
+            <property name="styleSheet">
+             <string notr="true">background-color: green;
+color: white;
+border: none;
+border-radius: 5px;
+padding: 5px;</string>
+            </property>
             <property name="text">
              <string>Подтвердить заказ</string>
             </property>
@@ -51,7 +86,11 @@
          </layout>
         </item>
         <item>
-         <widget class="QListWidget" name="listWidget"/>
+         <widget class="QListWidget" name="listWidget">
+          <property name="styleSheet">
+           <string notr="true">border: none</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -59,6 +98,13 @@
     </item>
     <item row="1" column="0">
      <widget class="QPushButton" name="main_request">
+      <property name="styleSheet">
+       <string notr="true">background: rgb(0, 102, 204);
+color: white;
+border: none;
+border-radius: 5px;
+padding: 5px;</string>
+      </property>
       <property name="text">
        <string>Запросить товар с основного склада</string>
       </property>
@@ -72,7 +118,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>23</height>
+     <height>29</height>
     </rect>
    </property>
   </widget>
