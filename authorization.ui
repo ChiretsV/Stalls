@@ -13,35 +13,83 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background: #e2e2e2</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBox">
+     <property name="styleSheet">
+      <string notr="true">background-color: #e2e2e2;
+color: black;
+font-size: 24px;
+border: none;</string>
+     </property>
      <property name="title">
-      <string>GroupBox</string>
+      <string>Вход</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="pass"/>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Пароль</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="login"/>
-      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="label">
+        <property name="styleSheet">
+         <string notr="true">font-size: 18px;
+text-align: center</string>
+        </property>
         <property name="text">
          <string>Логин</string>
         </property>
        </widget>
       </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="login">
+        <property name="styleSheet">
+         <string notr="true">outline: none;
+padding: 5px;
+border-radius: 5px;
+background: white;
+font-size: 16px;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="styleSheet">
+         <string notr="true">font-size: 18px</string>
+        </property>
+        <property name="text">
+         <string>Пароль</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="pass">
+        <property name="styleSheet">
+         <string notr="true">outline: none;
+padding: 5px;
+border-radius: 5px;
+background: white;
+font-size: 16px
+
+</string>
+        </property>
+       </widget>
+      </item>
       <item row="2" column="0" colspan="2">
        <widget class="QPushButton" name="entrance">
+        <property name="styleSheet">
+         <string notr="true">cursor: pointer;
+border: 0px solid rgb(187, 204, 0);
+font-size: 16px;
+color: rgb(255, 255, 255);
+padding: 10px 30px;
+transition: 280ms;
+width: 180px;
+box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+border-radius: 8px;
+background: rgb(0, 102, 204);
+font-weight: 700;
+</string>
+        </property>
         <property name="text">
          <string>Войти</string>
         </property>
