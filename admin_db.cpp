@@ -21,10 +21,10 @@ Admin_db::Admin_db(QWidget *parent)
 
     query = new QSqlQuery(admin_database);
 
-    // Удаляем таблицу, если она уже существует
-    //if (!query->exec("DROP TABLE IF EXISTS Items;")) {
-      //  qDebug() << "Ошибка при удалении таблицы:";
-    //}
+    //Удаляем таблицу, если она уже существует
+    // if (!query->exec("DROP TABLE IF EXISTS Items;")) {
+    //    qDebug() << "Ошибка при удалении таблицы:";
+    // }
 
     // Создаем таблицу заново
     if (!query->exec("CREATE TABLE IF NOT EXISTS Items(ItemName TEXT, Value INT);")) {
@@ -34,36 +34,36 @@ Admin_db::Admin_db(QWidget *parent)
     model = new QSqlTableModel(this, admin_database);
     model->setTable("Items");
 
-    //model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    // model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     model->select();
 
-    //QStringList items = {"Яблоко", "Арбуз", "Банан", "Персик", "Виноград", "Малина", "Клубника", "Вишня", "Огурец", "Болгарский перец", "Морковка", "Свекла", "Капуста","Бульба", "Брокколи", "Укроп", "Петрушка"};
+    // QStringList items = {"Яблоко", "Арбуз", "Банан", "Персик", "Виноград", "Малина", "Клубника", "Вишня", "Огурец", "Болгарский перец", "Морковка", "Свекла", "Капуста","Бульба", "Брокколи", "Укроп", "Петрушка"};
 
-    //int itemNameIndex = model->fieldIndex("ItemName");
-    //int valueIndex = model->fieldIndex("Value");
-    //qDebug() << "ItemName index:" << itemNameIndex << "Value index:" << valueIndex;
+    // int itemNameIndex = model->fieldIndex("ItemName");
+    // int valueIndex = model->fieldIndex("Value");
+    // qDebug() << "ItemName index:" << itemNameIndex << "Value index:" << valueIndex;
 
-    //for (int i = 0; i < items.size(); ++i) {
-        //qDebug() << "Вставка элемента:" << items[i];
-        //if (!model->insertRow(i)) {
-            //qDebug() << "Ошибка вставки строки для элемента в admin_db:" << items[i];
-            //continue;
-        //}
+    // for (int i = 0; i < items.size(); ++i) {
+    //     qDebug() << "Вставка элемента:" << items[i];
+    //     if (!model->insertRow(i)) {
+    //         qDebug() << "Ошибка вставки строки для элемента в admin_db:" << items[i];
+    //         continue;
+    //     }
 
-        //if (!model->setData(model->index(i, itemNameIndex), items[i])) {
-            //qDebug() << "Ошибка установки имени элемента в admin_db для элемента:" << items[i];
-        //}
+    //     if (!model->setData(model->index(i, itemNameIndex), items[i])) {
+    //         qDebug() << "Ошибка установки имени элемента в admin_db для элемента:" << items[i];
+    //     }
 
-        //if (!model->setData(model->index(i, valueIndex), 1000)) {
-            //qDebug() << "Ошибка установки значения в admin_db для элемента:" << items[i];
-        //}
-    //}
+    //     if (!model->setData(model->index(i, valueIndex), 1000)) {
+    //         qDebug() << "Ошибка установки значения в admin_db для элемента:" << items[i];
+    //     }
+    // }
 
-    if (!model->submitAll()) {
-        qDebug() << "Ошибка при сохранении начальных данных в базе данных:";
-    } else {
-        qDebug() << "Данные успешно сохранены";
-    }
+    // if (!model->submitAll()) {
+    //     qDebug() << "Ошибка при сохранении начальных данных в базе данных:";
+    // } else {
+    //     qDebug() << "Данные успешно сохранены";
+    // }
     ui->tableView->setModel(model);
 }
 
