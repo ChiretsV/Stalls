@@ -30,13 +30,11 @@ void Authorization::on_entrance_clicked()
     {
         hide();
         shop.show();
-        database.show();
 
     }
     if(login=="admin" && password == "admin")
     {
         hide();
         admin.show();
-        admin_db.show();
     }
 }
