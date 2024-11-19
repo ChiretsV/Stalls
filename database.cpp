@@ -20,36 +20,36 @@ Database::Database(QWidget *parent)
         qDebug("not open");
     }
     query = new QSqlQuery(database);
-    //query->exec("CREATE TABLE IF NOT EXISTS Items(ItemName TEXT, quantity_database INT);");
+    // query->exec("CREATE TABLE IF NOT EXISTS Items(ItemName TEXT, quantity_database INT);");
 
     model = new QSqlTableModel(this, database);
     model->setTable("Items");
 
-    //if (!query->exec("DELETE FROM Items;")) {
-      //  qDebug() << "Error clearing table:";
-    //}
+    // if (!query->exec("DELETE FROM Items;")) {
+    //    qDebug() << "Error clearing table:";
+    // }
 
-    //model->setEditStrategy(QSqlTableModel::OnManualSubmit); // Настраиваем модель для ручного сохранения изменений
-    //model->select();
+    // model->setEditStrategy(QSqlTableModel::OnManualSubmit); // Настраиваем модель для ручного сохранения изменений
+    // model->select();
 
-    //QStringList items = {"Яблоко", "Арбуз", "Банан", "Персик", "Виноград", "Малина", "Клубника", "Вишня", "Огурец", "Болгарский перец", "Морковка", "Свекла", "Капуста","Бульба", "Брокколи", "Укроп", "Петрушка"};
+    // QStringList items = {"Яблоко", "Арбуз", "Банан", "Персик", "Виноград", "Малина", "Клубника", "Вишня", "Огурец", "Болгарский перец", "Морковка", "Свекла", "Капуста","Бульба", "Брокколи", "Укроп", "Петрушка"};
 
-    //for (int i = 0; i <= 16; ++i) {
-        //if (!model->insertRow(i)) {
-            //qDebug() << "Error inserting row for item:" << items[i];
-            //continue;
-        //}
-        //if (!model->setData(model->index(i, model->fieldIndex("ItemName")), items[i]) || !model->setData(model->index(i, model->fieldIndex("quantity_database")), 10)) {
-            //qDebug() << "Error setting data for item:" << items[i];
-        //}
-    //}
+    // for (int i = 0; i <= 16; ++i) {
+    //     if (!model->insertRow(i)) {
+    //         qDebug() << "Error inserting row for item:" << items[i];
+    //         continue;
+    //     }
+    //     if (!model->setData(model->index(i, model->fieldIndex("ItemName")), items[i]) || !model->setData(model->index(i, model->fieldIndex("quantity_database")), 10)) {
+    //         qDebug() << "Error setting data for item:" << items[i];
+    //     }
+    // }
 
-    // Применяем изменения к базе данных
-    //if (!model->submitAll()) {
-        //qDebug() << "Ошибка при сохранении начальных данных в базе данных:";
-    //} else {
-    //qDebug() << "Данные успешно сохранены";
-    //}
+    // //Применяем изменения к базе данных
+    // if (!model->submitAll()) {
+    //     qDebug() << "Ошибка при сохранении начальных данных в базе данных:";
+    // } else {
+    // qDebug() << "Данные успешно сохранены";
+    // }
     model->select();
     ui->tableView->setModel(model);
 }

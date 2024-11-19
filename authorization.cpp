@@ -37,6 +37,5 @@ void Authorization::on_entrance_clicked()
     {
         hide();
         admin.show();
-        admin_db.show();
     }
 }
