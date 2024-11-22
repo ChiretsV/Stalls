@@ -31,6 +31,7 @@ void Authorization::on_entrance_clicked()
         hide();
         shop.show();
 
+
     }
     if(login=="admin" && password == "admin")
     {

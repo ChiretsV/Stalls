@@ -6,29 +6,18 @@ Shop::Shop(QWidget *parent)
     , ui(new Ui::Shop)
 {
     ui->setupUi(this);
-    ui->tableWidget->setRowCount(9);
-    ui->tableWidget->setColumnCount(3);
+    QStringList items = {
+        "Яблоко", "Арбуз", "Банан", "Персик", "Виноград", "Малина", "Клубника", "Вишня",
+        "Огурец", "Болгарский перец", "Морковка", "Свекла", "Капуста", "Бульба", "Брокколи", "Укроп", "Петрушка",
+        "Борщ", "Салат из капусты", "Салат красное море"
+    };
 
-    ui->tableWidget->setItem(0, 0, new QTableWidgetItem("Яблоко"));
-    ui->tableWidget->setItem(1, 0, new QTableWidgetItem("Арбуз"));
-    ui->tableWidget->setItem(2, 0, new QTableWidgetItem("Банан"));
-    ui->tableWidget->setItem(3, 0, new QTableWidgetItem("Персик"));
-    ui->tableWidget->setItem(4, 0, new QTableWidgetItem("Виноград"));
-    ui->tableWidget->setItem(5, 0, new QTableWidgetItem("Малина"));
-    ui->tableWidget->setItem(6, 0, new QTableWidgetItem("Клубника"));
-    ui->tableWidget->setItem(7, 0, new QTableWidgetItem("Вишня"));
-    ui->tableWidget->setItem(0, 1, new QTableWidgetItem("Огурец"));
-    ui->tableWidget->setItem(1, 1, new QTableWidgetItem("Болгарский перец"));
-    ui->tableWidget->setItem(2, 1, new QTableWidgetItem("Морковка"));
-    ui->tableWidget->setItem(3, 1, new QTableWidgetItem("Свекла"));
-    ui->tableWidget->setItem(4, 1, new QTableWidgetItem("Капуста"));
-    ui->tableWidget->setItem(5, 1, new QTableWidgetItem("Бульба"));
-    ui->tableWidget->setItem(6, 1, new QTableWidgetItem("Брокколи"));
-    ui->tableWidget->setItem(7, 1, new QTableWidgetItem("Укроп"));
-    ui->tableWidget->setItem(8, 1, new QTableWidgetItem("Петрушка"));
-    ui->tableWidget->setItem(0, 2, new QTableWidgetItem("Борщ"));
-    ui->tableWidget->setItem(1, 2, new QTableWidgetItem("Салат из капусты"));
-    ui->tableWidget->setItem(2, 2, new QTableWidgetItem("Салат красное море"));
+    ui->tableWidget->setRowCount(items.size());
+    ui->tableWidget->setColumnCount(1);
+
+    for (int i = 0; i < items.size(); ++i) {
+        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(items[i]));
+    }
 
     connect(ui->tableWidget, &QTableWidget::itemClicked, this, &Shop::on_tableWidget_itemClicked);
 }
@@ -145,4 +134,3 @@ void Shop :: slot_for_replenishment_shop(QString item, int value)
     quantity = value;
     emit send_to_database(itemName, quantity);
 }
-
