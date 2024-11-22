@@ -10,7 +10,7 @@ Admin_db::Admin_db(QWidget *parent)
         QSqlDatabase::removeDatabase("admin_db_connection");
     }
     admin_database = QSqlDatabase::addDatabase("QSQLITE", "admin_db_connection");
-    admin_database.setDatabaseName("./admin_db.db");
+    admin_database.setDatabaseName("D:/Stalls/admin_db.db");
 
     if(admin_database.open()) {
         qDebug("open");

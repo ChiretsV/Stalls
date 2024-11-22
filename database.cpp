@@ -10,7 +10,7 @@ Database::Database(QWidget *parent)
         QSqlDatabase::removeDatabase("user_db_connection");
     }
     database = QSqlDatabase::addDatabase("QSQLITE", "user_db_connection");
-    database.setDatabaseName("./user_db.db");
+    database.setDatabaseName("D:/Stalls/user_db.db");
     if(database.open())
     {
         qDebug("open");
